@@ -11,10 +11,11 @@
 
   <script>
     fetch('https://script.google.com/macros/s/AKfycbxBPrVKRsLn1WzDKsXcVeCx2bJtjvVYvluRf4T_hqh2U3rNnIQ4nZt3iJvxl-wyFLSc/exec')
-      .then(response => response.json())
+      .then(response => response.text())
       .then(data => {
+        const jsonData = JSON.parse(data);
         const container = document.getElementById('data');
-        data.forEach(row => {
+        jsonData.forEach(row => {
           const rowDiv = document.createElement('div');
           rowDiv.textContent = row.join(' | ');
           container.appendChild(rowDiv);
